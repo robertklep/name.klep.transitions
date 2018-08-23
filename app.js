@@ -21,6 +21,9 @@ module.exports = class TransitionsApp extends Homey.App {
       onTransitionEndedTrigger   : new Homey.FlowCardTrigger('transition_ended')
                                             .register()
                                             .registerRunListener(this.onTransitionEndedTrigger.bind(this)),
+      onTransitionStoppedTrigger : new Homey.FlowCardTrigger('transition_stopped')
+                                            .register()
+                                            .registerRunListener(this.onTransitionStoppedTrigger.bind(this)),
     };
 
     // Register actions.
@@ -50,6 +53,12 @@ module.exports = class TransitionsApp extends Homey.App {
     return true;
   }
 
+  async onTransitionStoppedTrigger(args, state) {
+    if (args.name !== state.name) return false;
+    this.log(`[TRIGGER] transition stopped: name = ${ args.name }, value = ${ state.value }`);
+    return true;
+  }
+
   async onStartTransitionTextAction(args, state) {
     let newArgs  = Parser(args.value);
     newArgs.name = args.name;
@@ -59,9 +68,18 @@ module.exports = class TransitionsApp extends Homey.App {
   async onStartTransitionAction(args, state) {
     this.log(`[ACTION]  transition created: args =`, args);
 
+    // Validate arguments.
+    if (args.step > args.duration) {
+      throw Error('STEP_EXCEEDS_DURATION');
+    }
+
+    if (args.step < 1) {
+      throw Error('STEP_TOO_SMALL');
+    }
+
     // Already have a transition with this name? Stop it.
     if (args.name in this.transitions) {
-      this.transitions[args.name].end();
+      this.transitions[args.name].stop();
     }
 
     // Create a new transition, set event handlers, and start it.
@@ -70,6 +88,8 @@ module.exports = class TransitionsApp extends Homey.App {
       this.onTransitionStart(args.name, value);
     }).on('step', value => {
       this.onTransitionStep(args.name, value);
+    }).on('stop', value => {
+      this.onTransitionStop(args.name, value);
     }).on('end', value => {
       this.onTransitionEnd(args.name, value);
     }).start();
@@ -89,6 +109,12 @@ module.exports = class TransitionsApp extends Homey.App {
   onTransitionEnd(name, value) {
     this.log(`[ACTION]  transition ended  : name = ${ name }, value = ${ value }`);
     this.triggers.onTransitionEndedTrigger.trigger({ name, value }, { name, value });
+    delete this.transitions[name];
+  }
+
+  onTransitionStop(name, value) {
+    this.log(`[ACTION]  transition stopped: name = ${ name }, value = ${ value }`);
+    this.triggers.onTransitionStoppedTrigger.trigger({ name, value }, { name, value });
     delete this.transitions[name];
   }
 }

@@ -133,6 +133,43 @@
             "example" : 100
           }
         ]
+      },
+      {
+        "id" : "transition_stopped",
+        "title" : {
+          "en": "Transition stopped",
+          "nl": "Transitie gestopt"
+        },
+        "args": [
+          {
+            "name": "name",
+            "type": "text",
+            "placeholder": {
+              "en": "Name",
+              "nl": "Naam"
+            }
+          }
+        ],
+        "tokens" : [
+          {
+            "name" : "name",
+            "type" : "string",
+            "title" : {
+              "en" : "name",
+              "nl" : "naam"
+            },
+            "example" : "lamp-brightness"
+          },
+          {
+            "name" : "value",
+            "type" : "number",
+            "title" : {
+              "en" : "value",
+              "nl" : "waarde"
+            },
+            "example" : 100
+          }
+        ]
       }
     ],
     "actions": [
@@ -199,7 +236,7 @@
               "en": "Duration (s)",
               "nl": "Duur (s)"
             },
-            "min" : 0
+            "min" : 1
           },
           {
             "name": "step",
@@ -208,7 +245,7 @@
               "en": "Step value (s)",
               "nl": "Stapwaarde (s)"
             },
-            "min" : 0
+            "min" : 1
           },
           {
             "name": "name",
