@@ -33,17 +33,20 @@ module.exports = class TransitionsApp extends Homey.App {
   }
 
   async onTransitionStartedTrigger(args, state) {
-    this.log('onTransitionStartedTrigger, args =', args, 'state =', state);
+    if (args.name !== state.name) return false;
+    this.log(`[TRIGGER] transition started: name = ${ args.name }, value = ${ state.value }`);
     return true;
   }
 
   async onTransitionChangedTrigger(args, state) {
-    this.log('onTransitionChangedTrigger, args =', args, 'state =', state);
+    if (args.name !== state.name) return false;
+    this.log(`[TRIGGER] transition changed: name = ${ args.name }, value = ${ state.value }`);
     return true;
   }
 
   async onTransitionEndedTrigger(args, state) {
-    this.log('onTransitionEndedTrigger, args =', args, 'state =', state);
+    if (args.name !== state.name) return false;
+    this.log(`[TRIGGER] transition ended  : name = ${ args.name }, value = ${ state.value }`);
     return true;
   }
 
@@ -54,7 +57,7 @@ module.exports = class TransitionsApp extends Homey.App {
   }
 
   async onStartTransitionAction(args, state) {
-    this.log(`Transition '${ args.name }' starting with args`, args);
+    this.log(`[ACTION]  transition created: args =`, args);
 
     // Already have a transition with this name? Stop it.
     if (args.name in this.transitions) {
@@ -74,18 +77,18 @@ module.exports = class TransitionsApp extends Homey.App {
   }
 
   onTransitionStart(name, value) {
-    this.log(`Transition started: ${ name }. Value: ${ value }`);
-    this.triggers.onTransitionStartedTrigger.trigger({ name, value });
+    this.log(`[ACTION]  transition started: name = ${ name }, value = ${ value }`);
+    this.triggers.onTransitionStartedTrigger.trigger({ name, value }, { name, value });
   }
 
   onTransitionStep(name, value) {
-    this.log(`Transition step   : ${ name }. Value: ${ value }`);
-    this.triggers.onTransitionChangedTrigger.trigger({ name, value });
+    this.log(`[ACTION]  transition changed: name = ${ name }, value = ${ value }`);
+    this.triggers.onTransitionChangedTrigger.trigger({ name, value }, { name, value });
   }
 
   onTransitionEnd(name, value) {
-    this.log(`Transition ended  : ${ name }. Value: ${ value }`);
-    this.triggers.onTransitionEndedTrigger.trigger({ name, value });
+    this.log(`[ACTION]  transition ended  : name = ${ name }, value = ${ value }`);
+    this.triggers.onTransitionEndedTrigger.trigger({ name, value }, { name, value });
     delete this.transitions[name];
   }
 }
