@@ -1,0 +1,196 @@
+{
+  "id": "name.klep.transitions",
+  "version": "1.0.0",
+  "compatibility": ">=1.5.0",
+  "sdk": 2,
+  "name": {
+    "en": "Transitions"
+  },
+  "description": {
+    "en": "Flexible time transitions"
+  },
+  "category": [
+    "tools"
+  ],
+  "permissions": [],
+  "images": {
+    "large": "/assets/images/large.png",
+    "small": "/assets/images/small.png"
+  },
+  "author": {
+    "name": "Robert Klep",
+    "email": "robert@klep.name"
+  },
+  "flow" : {
+    "triggers" : [
+      {
+        "id" : "transition_started",
+        "title" : {
+          "en": "Transition started",
+          "nl": "Transitie gestart"
+        },
+        "args": [
+          {
+            "name": "name",
+            "type": "text",
+            "placeholder": {
+              "en": "Name",
+              "nl": "Naam"
+            }
+          }
+        ],
+        "tokens" : [
+          {
+            "name" : "name",
+            "type" : "string",
+            "title" : {
+              "en" : "Name",
+              "nl" : "Naam"
+            },
+            "example" : "lamp-brightness"
+          },
+          {
+            "name" : "value",
+            "type" : "number",
+            "title" : {
+              "en" : "Value",
+              "nl" : "Waarde"
+            },
+            "example" : 0
+          }
+        ]
+      },
+      {
+        "id" : "transition_changed",
+        "title" : {
+          "en": "Transition changed",
+          "nl": "Transitie veranderd"
+        },
+        "args": [
+          {
+            "name": "name",
+            "type": "text",
+            "placeholder": {
+              "en": "Name",
+              "nl": "Naam"
+            }
+          }
+        ],
+        "tokens" : [
+          {
+            "name" : "name",
+            "type" : "string",
+            "title" : {
+              "en" : "Name",
+              "nl" : "Naam"
+            },
+            "example" : "lamp-brightness"
+          },
+          {
+            "name" : "value",
+            "type" : "number",
+            "title" : {
+              "en" : "Value",
+              "nl" : "Waarde"
+            },
+            "example" : 42
+          }
+        ]
+      },
+      {
+        "id" : "transition_ended",
+        "title" : {
+          "en": "Transition ended",
+          "nl": "Transitie klaar"
+        },
+        "args": [
+          {
+            "name": "name",
+            "type": "text",
+            "placeholder": {
+              "en": "Name",
+              "nl": "Naam"
+            }
+          }
+        ],
+        "tokens" : [
+          {
+            "name" : "name",
+            "type" : "string",
+            "title" : {
+              "en" : "name",
+              "nl" : "naam"
+            },
+            "example" : "lamp-brightness"
+          },
+          {
+            "name" : "value",
+            "type" : "number",
+            "title" : {
+              "en" : "value",
+              "nl" : "waarde"
+            },
+            "example" : 100
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "start_transition",
+        "title": {
+          "en": "Start a transition",
+          "nl": "Start een transitie"
+        },
+        "hint" : {
+          "en" : "Start a transition. Provide start and end values, the total duration for the transition, and the step size (number of seconds between update triggers).",
+          "nl" : "Start een transitie. Geef de start- en eindwaarden, de totale duur voor de transitie, en de stapwaarde (aantal seconden tussen update triggers)."
+        },
+        "args": [
+          {
+            "name": "startValue",
+            "type": "number",
+            "placeholder": {
+              "en": "Start value",
+              "nl": "Startwaarde"
+            }
+          },
+          {
+            "name": "endValue",
+            "type": "number",
+            "placeholder": {
+              "en": "End value",
+              "nl": "Eindwaarde"
+            }
+          },
+          {
+            "name": "duration",
+            "type": "number",
+            "placeholder": {
+              "en": "Duration (s)",
+              "nl": "Duur (s)"
+            },
+            "min" : 0
+          },
+          {
+            "name": "step",
+            "type": "number",
+            "placeholder": {
+              "en": "Step value (s)",
+              "nl": "Stapwaarde (s)"
+            },
+            "min" : 0
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "placeholder": {
+              "en": "Transition name",
+              "nl": "Transitienaam"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
