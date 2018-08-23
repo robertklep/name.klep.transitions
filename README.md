@@ -54,4 +54,5 @@ Some concrete examples:
 - `0-1,10m,1m` — the previous example; note that you can use `m` (minute) and `h`/`u` (hour) instead of having to convert everything back to seconds
 - `50-100,5m,30s` — transition from 50 to 100 in 5 minutes, with a 30 second step value
 - `50-100,300s,0.5m` — the same as the previous, but demonstrating how you can switch between seconds and minutes
+- `0.01-1.321,10m,1m` — ranges can also contain decimal numbers (although there is no mitigation against floating point rounding issues)
 

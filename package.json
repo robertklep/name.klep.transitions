@@ -7,7 +7,6 @@
     "lib": "lib"
   },
   "dependencies": {
-    "decimal": "^0.0.2"
   },
   "author": "Robert Klep <robert@klep.name>",
   "license": "MIT"

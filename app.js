@@ -1,4 +1,4 @@
-const Homey = require('homey');
+const Homey      = require('homey');
 const Transition = require('./lib/transition');
 const Parser     = require('./lib/parser');
 
