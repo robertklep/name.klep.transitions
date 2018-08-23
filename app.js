@@ -1,5 +1,6 @@
 const Homey = require('homey');
 const Transition = require('./lib/transition');
+const Parser     = require('./lib/parser');
 
 module.exports = class TransitionsApp extends Homey.App {
 
@@ -23,24 +24,33 @@ module.exports = class TransitionsApp extends Homey.App {
     };
 
     // Register actions.
+    new Homey.FlowCardAction('start_transition_text')
+             .register()
+             .registerRunListener(this.onStartTransitionTextAction.bind(this));
     new Homey.FlowCardAction('start_transition')
              .register()
              .registerRunListener(this.onStartTransitionAction.bind(this));
   }
 
   async onTransitionStartedTrigger(args, state) {
-    this.log(`onTransitionStartedTrigger, args = ${ args }, state = ${ state }`);
+    this.log('onTransitionStartedTrigger, args =', args, 'state =', state);
     return true;
   }
 
   async onTransitionChangedTrigger(args, state) {
-    this.log(`onTransitionChangedTrigger, args = ${ args }, state = ${ state }`);
+    this.log('onTransitionChangedTrigger, args =', args, 'state =', state);
     return true;
   }
 
   async onTransitionEndedTrigger(args, state) {
-    this.log(`onTransitionEndedTrigger, args = ${ args }, state = ${ state }`);
+    this.log('onTransitionEndedTrigger, args =', args, 'state =', state);
     return true;
+  }
+
+  async onStartTransitionTextAction(args, state) {
+    let newArgs  = Parser(args.value);
+    newArgs.name = args.name;
+    return this.onStartTransitionAction(newArgs, state);
   }
 
   async onStartTransitionAction(args, state) {

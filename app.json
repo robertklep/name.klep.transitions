@@ -137,14 +137,43 @@
     ],
     "actions": [
       {
+        "id": "start_transition_text",
+        "title": {
+          "en": "Start a transition",
+          "nl": "Start een transitie"
+        },
+        "hint" : {
+          "en" : "Start a transition. Provide start and end values, the total duration for the transition, and the step size (number of seconds between updates), as a string.",
+          "nl" : "Start een transitie. Geef de start- en eindwaarden, de totale duur voor de transitie, en de stapwaarde (aantal seconden tussen updates), als tekst."
+        },
+        "args": [
+          {
+            "name": "value",
+            "type": "text",
+            "placeholder": {
+              "en": "0-100, 30s, 1s",
+              "nl": "0-100, 30s, 1s"
+            }
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "placeholder": {
+              "en": "Transition name",
+              "nl": "Transitienaam"
+            }
+          }
+        ]
+      },
+      {
         "id": "start_transition",
         "title": {
           "en": "Start a transition",
           "nl": "Start een transitie"
         },
         "hint" : {
-          "en" : "Start a transition. Provide start and end values, the total duration for the transition, and the step size (number of seconds between update triggers).",
-          "nl" : "Start een transitie. Geef de start- en eindwaarden, de totale duur voor de transitie, en de stapwaarde (aantal seconden tussen update triggers)."
+          "en" : "Start a transition. Provide start and end values, the total duration for the transition, and the step size (number of seconds between updates).",
+          "nl" : "Start een transitie. Geef de start- en eindwaarden, de totale duur voor de transitie, en de stapwaarde (aantal seconden tussen updates)."
         },
         "args": [
           {
