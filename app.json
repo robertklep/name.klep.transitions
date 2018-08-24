@@ -7,7 +7,8 @@
     "en": "Transitions"
   },
   "description": {
-    "en": "Flexible time transitions"
+    "en": "Flexible time transitions",
+    "nl": "Flexibele tijdtransities"
   },
   "category": [
     "tools"
@@ -20,6 +21,14 @@
   "author": {
     "name": "Robert Klep",
     "email": "robert@klep.name"
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Robert Klep",
+        "email": "robert@klep.name"
+      }
+    ]
   },
   "flow" : {
     "triggers" : [
