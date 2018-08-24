@@ -33,6 +33,9 @@ module.exports = class TransitionsApp extends Homey.App {
     new Homey.FlowCardAction('start_transition')
              .register()
              .registerRunListener(this.onStartTransitionAction.bind(this));
+    new Homey.FlowCardAction('stop_transition')
+             .register()
+             .registerRunListener(this.onStopTransitionAction.bind(this));
   }
 
   async onTransitionStartedTrigger(args, state) {
@@ -94,6 +97,13 @@ module.exports = class TransitionsApp extends Homey.App {
       this.onTransitionEnd(args.name, value);
     }).start();
     return true;
+  }
+
+  async onStopTransitionAction(args, state) {
+    this.log(`[ACTION]  stopping transition: name = ${ args.name }`);
+    if (args.name in this.transitions) {
+      this.transitions[args.name].stop();
+    }
   }
 
   onTransitionStart(name, value) {

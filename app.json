@@ -256,6 +256,23 @@
             }
           }
         ]
+      },
+      {
+        "id": "stop_transition",
+        "title": {
+          "en": "Stop a transition",
+          "nl": "Stop een transitie"
+        },
+        "args": [
+          {
+            "name": "name",
+            "type": "text",
+            "placeholder": {
+              "en": "Transition name",
+              "nl": "Transitienaam"
+            }
+          }
+        ]
       }
     ]
   }

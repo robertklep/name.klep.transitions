@@ -17,9 +17,9 @@ A transition is started from an Action flow.
 
 There are various Trigger flowcards that can be used to "listen" for changes to a transition:
 - a transition is started
-- a transition is changed (its value was updated)
-- a transition has ended
-- a transition was stopped
+- a transition is changed: its value was updated
+- a transition has ended: it has reached its end value
+- a transition was stopped: it was explicitly stopped by a flow, or a new transition with the same name was started
 
 Note that _all_ a transition does it trigger flows. It does, in itself, _not_ change device capabilities.
 
