@@ -56,6 +56,10 @@ Some concrete examples:
 - `50-100,300s,0.5m` — the same as the previous, but demonstrating how you can switch between seconds and minutes
 - `0.01-1.321,10m,1m` — ranges can also contain decimal numbers (although there is no mitigation against floating point rounding issues)
 
+*NB*:
+- you can't set step values below 0.5 seconds
+- if you're using decimal values, use points, not commas (so `0.1` is correct, `0,1` isn't).
+
 # Icon attribution
 
 "Time" icon created by Alberto Alonso from <a href="https://thenounproject.com/">the Noun Project</a>.
