@@ -62,4 +62,4 @@ Some concrete examples:
 
 # Icon attribution
 
-"Time" icon created by Alberto Alonso from <a href="https://thenounproject.com/">the Noun Project</a>.
+"Stopwatch" Icon made by Freepik from <a href="https://www.flaticon.com">www.flaticon.com</a>.
