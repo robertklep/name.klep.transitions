@@ -1,6 +1,6 @@
 {
   "name": "name.klep.transitions",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Flexible time transitions",
   "main": "app.js",
   "directories": {
