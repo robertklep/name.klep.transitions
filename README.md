@@ -60,6 +60,23 @@ Some concrete examples:
 - you can't set step values below 0.5 seconds
 - if you're using decimal values, use points, not commas (so `0.1` is correct, `0,1` isn't).
 
+## Note
+
+If the total duration for a transition isn't evenly divisible by the step size, the last step will be shortened to make sure it fits the duration.
+
+In other words, if you have a duration of 10 seconds and a step size of 4 seconds, the transition will emit a "change" event on 0s, 4s, 8s and 10s. So the last step only lasts 2 seconds.
+
+Another example: with a duration of 100 seconds and a step size of 3 seconds, change events will happen on "0, 3s, 6s, ..., 93s, 96s, 99s, 100s".
+
+## Changelog
+
+v1.0.3 (2018-09-05):
+- Fixed issue #3: timer didn't always stop running
+- More robust/sane timing
+
+v1.0.2 (2018-08-28)
+v1.0.1 (2018-08-27)
+
 # Icon attribution
 
 "Stopwatch" Icon made by Freepik from <a href="https://www.flaticon.com">www.flaticon.com</a>.
