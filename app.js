@@ -90,9 +90,9 @@ module.exports = class TransitionsApp extends Homey.App {
     }).on('step', value => {
       this.onTransitionEvent('Changed', args.name, value);
     }).on('end', value => {
-      this.onTransitionEvent('Ended', args.name, value);
+      this.onTransitionEvent('Ended', args.name, value, true);
     }).on('stop', value => {
-      this.onTransitionEvent('Stopped', args.name, value);
+      this.onTransitionEvent('Stopped', args.name, value, true);
     }).start();
     return true;
   }
@@ -101,6 +101,7 @@ module.exports = class TransitionsApp extends Homey.App {
     this.log(`[ACTION]  stopping transition: name = ${ args.name }`);
     if (args.name in this.transitions) {
       this.transitions[args.name].stop();
+      delete this.transitions[args.name];
     }
   }
 
