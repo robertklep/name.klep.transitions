@@ -26,14 +26,12 @@ module.exports = class TransitionsApp extends Homey.App {
 
   registerTrigger(name) {
     const method = camelize(name) + 'Trigger';
-    this.triggers[method] = new Homey.FlowCardTrigger(name).register()
-                                     .registerRunListener(this[method].bind(this));
+    this.triggers[method] = this.homey.flow.getTriggerCard(name).registerRunListener(this[method].bind(this));
   }
 
   registerAction(name) {
     const method = camelize(name) + 'Action';
-    new Homey.FlowCardAction(name).register()
-             .registerRunListener(this[method].bind(this));
+    this.homey.flow.getActionCard(name).registerRunListener(this[method].bind(this));
   }
 
   async transitionStartedTrigger(args, state) {
@@ -67,7 +65,7 @@ module.exports = class TransitionsApp extends Homey.App {
   }
 
   async startTransitionAction(args, state) {
-    this.log(`[ACTION]  transition created: args =`, args);
+    this.log(`[ACTION]  transition created: args =`, args, ', state =', state);
 
     // Validate arguments.
     if (args.step > args.duration) {
