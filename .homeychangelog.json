@@ -1,0 +1,8 @@
+{
+  "2.0.0": {
+    "en": "Upgraded to SDKv3"
+  },
+  "2.1.0": {
+    "en": "Added condition card to check if transition is running"
+  }
+}
