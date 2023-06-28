@@ -18,6 +18,9 @@ module.exports = class TransitionsApp extends Homey.App {
     this.registerTrigger('transition_ended');
     this.registerTrigger('transition_stopped');
 
+    // Register conditions.
+    this.registerCondition();
+
     // Register actions.
     this.registerAction('start_transition_text');
     this.registerAction('start_transition');
@@ -27,6 +30,24 @@ module.exports = class TransitionsApp extends Homey.App {
   registerTrigger(name) {
     const method = camelize(name) + 'Trigger';
     this.triggers[method] = this.homey.flow.getTriggerCard(name).registerRunListener(this[method].bind(this));
+  }
+
+  registerCondition() {
+    this.homey.flow
+      .getConditionCard('transition_is_running')
+      .registerArgumentAutocompleteListener('name', async (query, args) => {
+        const matches = Object.keys(this.transitions).filter(name => name.startsWith(query)).map(name => {
+          return { name };
+        });
+        if (matches.length) {
+          return matches;
+        } else {
+          return [ { name : query } ];
+        }
+      }).registerRunListener(async (args, state) => {
+        const name = args.name?.name;
+        return name in this.transitions && ! this.transitions[name].hasStopped();
+      });
   }
 
   registerAction(name) {

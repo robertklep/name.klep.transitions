@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "compatibility": ">=5",
   "homeyCommunityTopicId": 443,
+  "brandColor" : "#ed1916",
   "sdk": 3,
   "name": {
     "en": "Transitions"
@@ -38,6 +39,10 @@
         "title" : {
           "en": "Transition started",
           "nl": "Transitie gestart"
+        },
+        "titleFormatted" : {
+          "en": "Transition [[name]] started",
+          "nl": "Transitie [[name]] gestart"
         },
         "args": [
           {
@@ -76,6 +81,10 @@
           "en": "Transition changed",
           "nl": "Transitie veranderd"
         },
+        "titleFormatted" : {
+          "en": "Transition [[name]] changed",
+          "nl": "Transitie [[name]] veranderd"
+        },
         "args": [
           {
             "name": "name",
@@ -112,6 +121,10 @@
         "title" : {
           "en": "Transition ended",
           "nl": "Transitie klaar"
+        },
+        "titleFormatted" : {
+          "en": "Transition [[name]] ended",
+          "nl": "Transitie [[name]] klaar"
         },
         "args": [
           {
@@ -150,6 +163,10 @@
           "en": "Transition stopped",
           "nl": "Transitie gestopt"
         },
+        "titleFormatted" : {
+          "en": "Transition [[name]] stopped",
+          "nl": "Transitie [[name]] gestopt"
+        },
         "args": [
           {
             "name": "name",
@@ -182,12 +199,47 @@
         ]
       }
     ],
+    "conditions" : [
+      {
+        "id" : "transition_is_running",
+        "title" : {
+          "en": "Transition !{{is|isn't}} running",
+          "nl": "Transitie !{{is|is niet}} actief"
+        },
+        "titleFormatted" : {
+          "en": "Transition [[name]] !{{is|isn't}} running",
+          "nl": "Transitie [[name]] !{{is|is niet}} actief"
+        },
+        "hint" : {
+          "en" : "Check if a transition is currently running",
+          "nl" : "Check of een transitie op het moment actief is"
+        },
+        "args" : [
+          {
+            "type": "autocomplete",
+            "name" : "name",
+            "title" : {
+              "en" : "Transition name",
+              "nl" : "Transitienaam"
+            },
+            "placeholder": {
+              "en" : "Name of transition",
+              "nl" : "Naam van transitie"
+            }
+          }
+        ]
+      }
+    ],
     "actions": [
       {
         "id": "start_transition_text",
         "title": {
           "en": "Start a transition",
           "nl": "Start een transitie"
+        },
+        "titleFormatted": {
+          "en": "Start a transition with short form [[value]] and name [[name]]",
+          "nl": "Start een transitie met kortevorm [[value]] en naam [[name]]"
         },
         "hint" : {
           "en" : "Start a transition. Provide start and end values, the total duration for the transition, and the step size (number of seconds between updates), as a string.",
@@ -217,6 +269,10 @@
         "title": {
           "en": "Start a transition",
           "nl": "Start een transitie"
+        },
+        "titleFormatted": {
+          "en": "Start a transition named \"[[name]]\" that transitions in [[step]] step from [[startValue]] to [[endValue]] in [[duration]] seconds.",
+          "nl": "Start een transitie genaamd \"[[name]]\" die in [[step]] stappen van [[startValue]] tot [[endValue]] telt gedurende [[duration]] seconden."
         },
         "hint" : {
           "en" : "Start a transition. Provide start and end values, the total duration for the transition, and the step size (number of seconds between updates).",
@@ -272,6 +328,10 @@
         "title": {
           "en": "Stop a transition",
           "nl": "Stop een transitie"
+        },
+        "titleFormatted": {
+          "en": "Stop transition [[name]]",
+          "nl": "Stop transitie [[name]]"
         },
         "args": [
           {
