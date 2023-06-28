@@ -1,2 +1,6 @@
 users.txt
 temp
+
+
+# Added by Homey CLI
+/.homeybuild/
